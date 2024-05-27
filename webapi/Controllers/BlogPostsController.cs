@@ -70,7 +70,7 @@ namespace webapi.Controllers
         public async Task<IActionResult> GetAllBlogPosts()
         {
             var blogPosts = await blogPostRepository.GetAllAsync();
-            
+            //
             return Ok(blogPosts.Select(b => new BlogPostDto
             {
                 Id = b.Id,
