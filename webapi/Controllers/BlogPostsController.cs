@@ -34,10 +34,10 @@ namespace webapi.Controllers
                 Categories = new List<Category>()
             };
 
-            foreach (var categoryId in request.Categories) 
+            foreach (var categoryId in request.Categories)
             {
                 var existingCategory = await categoryRepository.GetById(categoryId);
-                if(existingCategory != null)
+                if (existingCategory != null)
                 {
                     blogPost.Categories.Add(existingCategory);
                 }
@@ -70,7 +70,7 @@ namespace webapi.Controllers
         public async Task<IActionResult> GetAllBlogPosts()
         {
             var blogPosts = await blogPostRepository.GetAllAsync();
-            
+
             return Ok(blogPosts.Select(b => new BlogPostDto
             {
                 Id = b.Id,
@@ -89,6 +89,87 @@ namespace webapi.Controllers
                     UrlHandle = c.UrlHandle
                 }).ToList(),
             }));
+        }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> GetBlogPostById([FromRoute] Guid id)
+        {
+            var blogPost = await blogPostRepository.GetByIdAsync(id);
+
+            if (blogPost == null) return NotFound();
+
+            return Ok(new BlogPostDto
+            {
+                Id = blogPost.Id,
+                Author = blogPost.Author,
+                Content = blogPost.Content,
+                FeaturedImageUrl = blogPost.FeaturedImageUrl,
+                IsVisible = blogPost.IsVisible,
+                PublishedDate = blogPost.PublishedDate,
+                ShortDescription = blogPost.ShortDescription,
+                Title = blogPost.Title,
+                UrlHandle = blogPost.UrlHandle,
+                Categories = blogPost.Categories.Select(c => new CategoryDto
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    UrlHandle = c.UrlHandle
+                }).ToList(),
+            });
+        }
+
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> UpdateBlogPostById([FromRoute] Guid id, UpdateBlogPostRequestDto request)
+        {
+            var blogPost = new BlogPost
+            {
+                Author = request.Author,
+                Content = request.Content,
+                FeaturedImageUrl = request.FeaturedImageUrl,
+                IsVisible = request.IsVisible,
+                PublishedDate = request.PublishedDate,
+                ShortDescription = request.ShortDescription,
+                Title = request.Title,
+                UrlHandle = request.UrlHandle,
+                Categories = new List<Category>()
+            };
+
+            foreach (var categoryId in request.Categories)
+            {
+                var existingCategory = await categoryRepository.GetById(categoryId);
+                if(existingCategory != null)
+                {
+                    blogPost.Categories.Add(existingCategory);
+                }
+            }
+
+            var updatedBlogPost = await blogPostRepository.UpdateAsync(blogPost);
+
+            if (updatedBlogPost == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(new BlogPostDto
+            {
+                Id = updatedBlogPost.Id,
+                Author = updatedBlogPost.Author,
+                Content = updatedBlogPost.Content,
+                FeaturedImageUrl = updatedBlogPost.FeaturedImageUrl,
+                IsVisible = updatedBlogPost.IsVisible,
+                PublishedDate = updatedBlogPost.PublishedDate,
+                ShortDescription = updatedBlogPost.ShortDescription,
+                Title = updatedBlogPost.Title,
+                UrlHandle = updatedBlogPost.UrlHandle,
+                Categories = updatedBlogPost.Categories.Select(c => new CategoryDto
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    UrlHandle = c.UrlHandle
+                }).ToList(),
+            });
         }
     }
 }

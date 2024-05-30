@@ -25,5 +25,25 @@ namespace webapi.Repositories.Implementations
         {
             return await dbContext.BlogPosts.Include(b => b.Categories).ToListAsync();
         }
+
+        public async Task<BlogPost?> GetByIdAsync(Guid id)
+        {
+            return await dbContext.BlogPosts.Include(b => b.Categories).FirstOrDefaultAsync(b => b.Id == id);
+        }
+
+        public async Task<BlogPost?> UpdateAsync(BlogPost blogPost)
+        {
+            var currentBlogPost = await dbContext.BlogPosts.Include(b => b.Categories).FirstOrDefaultAsync(b => b.Id ==  blogPost.Id);
+
+            if (currentBlogPost != null)
+            {
+                dbContext.Entry(currentBlogPost).CurrentValues.SetValues(blogPost);
+                currentBlogPost.Categories = blogPost.Categories;
+                await dbContext.SaveChangesAsync();
+                currentBlogPost = blogPost;
+            }
+
+            return currentBlogPost;
+        }
     }
 }
