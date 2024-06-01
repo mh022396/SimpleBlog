@@ -125,6 +125,7 @@ namespace webapi.Controllers
         {
             var blogPost = new BlogPost
             {
+                Id = id,
                 Author = request.Author,
                 Content = request.Content,
                 FeaturedImageUrl = request.FeaturedImageUrl,
@@ -139,7 +140,7 @@ namespace webapi.Controllers
             foreach (var categoryId in request.Categories)
             {
                 var existingCategory = await categoryRepository.GetById(categoryId);
-                if(existingCategory != null)
+                if (existingCategory != null)
                 {
                     blogPost.Categories.Add(existingCategory);
                 }
@@ -170,6 +171,17 @@ namespace webapi.Controllers
                     UrlHandle = c.UrlHandle
                 }).ToList(),
             });
+        }
+
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> DeleteBlogPostById([FromRoute] Guid id)
+        {
+            if (await blogPostRepository.DeleteAsync(id))
+            {
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace webapi.Repositories.Interfaces
         Task<IEnumerable<BlogPost>> GetAllAsync();
         Task<BlogPost?> GetByIdAsync(Guid id);
         Task<BlogPost?> UpdateAsync(BlogPost blogPost);
+        Task<bool> DeleteAsync(Guid id);
 
     }
 }

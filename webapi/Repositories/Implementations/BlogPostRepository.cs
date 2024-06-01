@@ -45,5 +45,17 @@ namespace webapi.Repositories.Implementations
 
             return currentBlogPost;
         }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var toDelete = await dbContext.BlogPosts.FirstOrDefaultAsync(b => b.Id == id);
+            if (toDelete != null)
+            {
+                dbContext.BlogPosts.Remove(toDelete);
+                await dbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
     }
 }
