@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using webapi.Models.Domain;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace webapi.Data;
+namespace Infrastructure.Persistence;
 
 public class AppDbContext : DbContext
 {

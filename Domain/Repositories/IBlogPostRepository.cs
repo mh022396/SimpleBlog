@@ -1,6 +1,6 @@
-﻿using webapi.Models.Domain;
+﻿using Domain.Entities;
 
-namespace webapi.Repositories.Interfaces
+namespace Domain.Repositories
 {
     public interface IBlogPostRepository
     {

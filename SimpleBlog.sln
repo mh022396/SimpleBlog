@@ -5,7 +5,13 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "angularapp", "angularapp\angularapp.esproj", "{F8FD0825-6766-48A1-92A0-3535D4DC3686}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "webapi", "webapi\webapi.csproj", "{5468D896-0CAF-4A6F-9ED0-8E27854638F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "webapi\API.csproj", "{5468D896-0CAF-4A6F-9ED0-8E27854638F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{0DB63525-9A1B-43C9-96D9-E457A7675767}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{55422ABF-9655-4040-8069-BB0176A16965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{994BAB41-C0FC-4AA6-A1D4-1785DCDAAC69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +29,18 @@ Global
 		{5468D896-0CAF-4A6F-9ED0-8E27854638F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5468D896-0CAF-4A6F-9ED0-8E27854638F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5468D896-0CAF-4A6F-9ED0-8E27854638F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB63525-9A1B-43C9-96D9-E457A7675767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB63525-9A1B-43C9-96D9-E457A7675767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB63525-9A1B-43C9-96D9-E457A7675767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB63525-9A1B-43C9-96D9-E457A7675767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55422ABF-9655-4040-8069-BB0176A16965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55422ABF-9655-4040-8069-BB0176A16965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55422ABF-9655-4040-8069-BB0176A16965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55422ABF-9655-4040-8069-BB0176A16965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{994BAB41-C0FC-4AA6-A1D4-1785DCDAAC69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{994BAB41-C0FC-4AA6-A1D4-1785DCDAAC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{994BAB41-C0FC-4AA6-A1D4-1785DCDAAC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{994BAB41-C0FC-4AA6-A1D4-1785DCDAAC69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

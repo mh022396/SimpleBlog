@@ -1,4 +1,4 @@
-﻿namespace webapi.Models.Domain
+﻿namespace Domain.Entities
 {
     public class BlogPost
     {

@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using webapi.Data;
-using webapi.Models.Domain;
-using webapi.Models.DTO;
-using webapi.Repositories.Interfaces;
+﻿using API.Models.DTO;
+using Domain.Entities;
+using Domain.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
-namespace webapi.Controllers;
+namespace Simple.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

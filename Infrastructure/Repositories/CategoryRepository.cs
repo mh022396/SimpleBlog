@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using webapi.Data;
-using webapi.Models.Domain;
-using webapi.Repositories.Interfaces;
+﻿using Domain.Entities;
+using Domain.Repositories;
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
-namespace webapi.Repositories.Implementations
+namespace Infrastructure.Repositories
 {
     public class CategoryRepository : ICategoryRepository
     {
@@ -34,7 +34,7 @@ namespace webapi.Repositories.Implementations
         public async Task<Category?> UpdateAsync(Category category)
         {
             var currentCategory = await dbContext.Categories.FirstOrDefaultAsync(c => c.Id == category.Id);
-            if(currentCategory != null)
+            if (currentCategory != null)
             {
                 dbContext.Entry(currentCategory).CurrentValues.SetValues(category);
                 await dbContext.SaveChangesAsync();
@@ -46,7 +46,7 @@ namespace webapi.Repositories.Implementations
         public async Task<bool> DeleteAsync(Guid id)
         {
             var currentCategory = await dbContext.Categories.FirstOrDefaultAsync(c => c.Id == id);
-            if(currentCategory != null)
+            if (currentCategory != null)
             {
                 dbContext.Remove(currentCategory);
                 await dbContext.SaveChangesAsync();

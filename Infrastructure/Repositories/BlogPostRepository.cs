@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using webapi.Data;
-using webapi.Models.Domain;
-using webapi.Repositories.Interfaces;
+﻿using Domain.Entities;
+using Domain.Repositories;
+using Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
-namespace webapi.Repositories.Implementations
+namespace Infrastructure.Repositories
 {
     public class BlogPostRepository : IBlogPostRepository
     {
@@ -33,7 +33,7 @@ namespace webapi.Repositories.Implementations
 
         public async Task<BlogPost?> UpdateAsync(BlogPost blogPost)
         {
-            var currentBlogPost = await dbContext.BlogPosts.Include(b => b.Categories).FirstOrDefaultAsync(b => b.Id ==  blogPost.Id);
+            var currentBlogPost = await dbContext.BlogPosts.Include(b => b.Categories).FirstOrDefaultAsync(b => b.Id == blogPost.Id);
 
             if (currentBlogPost != null)
             {

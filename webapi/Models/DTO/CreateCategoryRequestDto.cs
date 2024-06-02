@@ -1,4 +1,4 @@
-﻿namespace webapi.Models.DTO
+﻿namespace API.Models.DTO
 {
     public class CreateCategoryRequestDto
     {
